@@ -1,1 +1,40 @@
 
+name: Gerar instalador Windows
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Baixar projeto
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Verificar sistema
+        run: npm run check
+
+      - name: Gerar instalador
+        run: npm run dist:win
+
+      - name: Disponibilizar instalador
+        uses: actions/upload-artifact@v4
+        with:
+          name: Edmilson-Cell-Instalador
+          path: dist/*.exe
+          if-no-files-found: error
+
