@@ -1,0 +1,37 @@
+name: Gerar instalador Windows
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  setup-windows:
+    name: Compilar Setup.exe
+    runs-on: windows-latest
+    steps:
+      - name: Baixar projeto
+        uses: actions/checkout@v4
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Instalar dependencias
+        shell: pwsh
+        run: |
+          if (Test-Path package-lock.json) {
+            npm ci
+          } else {
+            npm install
+          }
+      - name: Verificar sistema
+        run: npm run check
+      - name: Gerar instalador
+        run: npm run dist:win
+      - name: Disponibilizar Setup.exe
+        uses: actions/upload-artifact@v4
+        with:
+          name: Edmilson-Cell-Premium-Windows
+          path: dist/*.exe
+          if-no-files-found: error
