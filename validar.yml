@@ -1,0 +1,27 @@
+name: Validar arquivos do sistema
+on:
+  push:
+  pull_request:
+jobs:
+  validacao:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Conferir arquivos necessários
+        run: |
+          test -s index.html
+          test -s logo-edmilson-cell.png
+      - name: Validar JavaScript integrado
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const html = fs.readFileSync('index.html','utf8');
+          const blocks = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)];
+          if (blocks.length === 0) throw new Error('Nenhum script encontrado');
+          for (const [, code] of blocks) new Function(code);
+          process.stdout.write(`${blocks.length} bloco(s) JS validado(s)\n`);
+          NODE
