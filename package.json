@@ -1,13 +1,13 @@
 {
   "name": "edmilson-cell-premium",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "private": true,
   "description": "Edmilson Cell Premium - aplicativo local Windows",
   "main": "electron/main.cjs",
   "scripts": {
     "start": "electron .",
     "check": "node --check electron/main.cjs && node --check scripts/check-app.cjs && node scripts/check-app.cjs",
-    "dist:win": "electron-builder --win nsis --x64"
+    "dist:win": "electron-builder --win nsis --x64 --publish never"
   },
   "devDependencies": {
     "electron": "^33.4.11",
