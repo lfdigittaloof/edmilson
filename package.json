@@ -1,8 +1,8 @@
 {
   "name": "edmilson-cell-premium",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "private": true,
-  "description": "Gestão local de loja de celulares Edmilson Cell",
+  "description": "Edmilson Cell Premium - aplicativo local Windows",
   "main": "electron/main.cjs",
   "scripts": {
     "start": "electron .",
