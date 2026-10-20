@@ -1,13 +1,10 @@
-# Arquivos privados/locais e backups de clientes
-*.zip
-*.bak
-*.sqlite
-*.db
-*backup*.json
-backups/
-dados/
 node_modules/
+dist/
+*.log
+*.json.bak
+*.backup
+backup*.json
+*.db
+*.sqlite
+*.sqlite3
 .DS_Store
-Thumbs.db
-.env
-.env.*
