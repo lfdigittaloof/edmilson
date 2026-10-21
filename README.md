@@ -21,3 +21,7 @@ Projeto completo para gerar o instalador Windows via GitHub Actions.
 - `.github/workflows/main.yml`: compilação e upload do Setup.exe sem token pessoal.
 
 **Observação:** a versão 3.1.1 foi revisada por verificações estáticas, mas o `Setup.exe` só será confirmado após o GitHub Actions concluir a compilação. A instalação e o uso com dados reais exigem teste adicional. O armazenamento do Electron não sincroniza automaticamente com o navegador; exporte e importe o backup.
+
+
+### v3.1.2
+Corrigida a validação da logo embutida em base64. O workflow mantém publicação desativada e entrega o Setup em Artifacts.
