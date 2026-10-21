@@ -25,3 +25,6 @@ Projeto completo para gerar o instalador Windows via GitHub Actions.
 
 ### v3.1.2
 Corrigida a validação da logo embutida em base64. O workflow mantém publicação desativada e entrega o Setup em Artifacts.
+
+
+v3.1.3: categoria livre no cadastro de acessórios; melhorias de foco e clique nos formulários. O cadastro de Produtos da Loja permanece sem IMEI. Faça backup antes de atualizar.
