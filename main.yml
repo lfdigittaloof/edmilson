@@ -1,0 +1,37 @@
+name: Gerar instalador Windows
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Compilar Setup Windows
+    runs-on: windows-latest
+    steps:
+      - name: Baixar projeto
+        uses: actions/checkout@v4
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar dependencias
+        run: npm install --no-audit --no-fund
+      - name: Validar integridade
+        run: npm run check
+      - name: Gerar instalador (sem publicar Release)
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+        run: npm run dist:win
+      - name: Disponibilizar Setup.exe em Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Edmilson-Cell-Premium-Setup-v3.1.1
+          path: dist/*.exe
+          if-no-files-found: error
+          retention-days: 30

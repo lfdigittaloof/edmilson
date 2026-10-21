@@ -1,28 +1,23 @@
-# Edmilson Cell Premium v3.0.1 — pacote corrigido
+# Edmilson Cell Premium v3.1.1
 
-## Arquivos e pastas obrigatorios
+Projeto completo para gerar o instalador Windows via GitHub Actions.
 
-- `index.html` — sistema
-- `logo-edmilson-cell.png` — marca
-- `package.json` — comandos do instalador
-- `electron/main.cjs` — inicializador Electron (o caminho deve ser preservado)
-- `scripts/check-app.cjs` — testes de sintaxe
-- `assets/icon.ico` — icone Windows
-- `.github/workflows/main.yml` — workflow do GitHub Actions
+## Envio ao GitHub
 
-## Como enviar
+1. Faça backup JSON dos cadastros na versão atual.
+2. Extraia o ZIP e copie **o conteúdo interno** para a **raiz** do repositório `lfdigittaloof/edmilson`, preservando as pastas `.github`, `electron`, `assets` e `scripts`.
+3. Substitua os arquivos antigos de mesmo nome. Arquivos antigos `main.cjs`, `check-app.js` e outros workflows soltos na raiz podem permanecer sem uso, mas podem ser excluídos depois de verificar a nova compilação.
+4. Faça commit e envie (`Push origin`). Acesse a aba Actions e o workflow **Gerar instalador Windows**.
+5. Abra a execução concluída e baixe o ZIP do instalador em **Artifacts**.
 
-**Recomendado: GitHub Desktop**. No computador, baixe o repositório `lfdigittaloof/edmilson` pelo GitHub Desktop (File > Clone repository). Extraia este ZIP e copie **o conteudo interno** da pasta `Edmilson_Cell_GitHub_CORRIGIDO_v3.0.1` para dentro da pasta local do repositório, mantendo as subpastas `electron`, `scripts`, `assets` e `.github/workflows`. Confirme substituicao dos arquivos com o mesmo nome. No GitHub Desktop use `Commit to main` e `Push origin`.
+## Arquivos principais
 
-**Importante**: Como sua versao anterior foi enviada com os arquivos fora das pastas, nao mova `main.cjs` para a raiz. O caminho correto no repositório e `electron/main.cjs`. Um arquivo `main.cjs` solto na raiz pode continuar sem uso e pode ser excluido depois, assim como arquivos `check-app.js` ou workflows antigos quando confirmar que a versao atual funciona.
+- `index.html`: aplicativo com produtos livres, celulares/IMEI, financeiro e menu atualizado.
+- `logo-edmilson-cell.png`: marca da loja.
+- `electron/main.cjs`: janela desktop.
+- `assets/icon.ico`: ícone do instalador.
+- `scripts/check-app.cjs`: validação de estrutura e sintaxe.
+- `package.json`: projeto Electron Builder, instalação NSIS.
+- `.github/workflows/main.yml`: compilação e upload do Setup.exe sem token pessoal.
 
-Depois abra https://github.com/lfdigittaloof/edmilson/actions > Gerar instalador Windows. A compilacao e automaticamente disparada no `push` para `main`, ou use `Run workflow`. Quando o status estiver verde, abra a execucao e baixe `Edmilson-Cell-Premium-Setup-v3.0.1` em Artifacts.
-
-O instalador utiliza NSIS e cria atalho na area de trabalho. Os dados do sistema ficam no armazenamento local do aplicativo; faca backup da versao usada anteriormente e importe no aplicativo instalado. Nao envie seus backups pessoais para o GitHub.
-
-**Verificacoes locais**: sintaxe do JS e presenca de arquivos. A compilacao Electron no Windows e os testes de operacao real ainda dependem do GitHub Actions.
-
-## Correção v3.0.2
-A compilação do instalador está configurada com `--publish never` para impedir publicação automática no GitHub sem token. O Setup.exe gerado ficará disponível em Actions > execução > Artifacts.
-
-**Importante:** copie o conteúdo DESTA pasta para a raiz do repositório, incluindo `.github`, `electron`, `scripts` e `assets`. Não inclua a pasta externa como subpasta. Os dados de clientes não devem ser enviados ao GitHub.
+**Observação:** a versão 3.1.1 foi revisada por verificações estáticas, mas o `Setup.exe` só será confirmado após o GitHub Actions concluir a compilação. A instalação e o uso com dados reais exigem teste adicional. O armazenamento do Electron não sincroniza automaticamente com o navegador; exporte e importe o backup.

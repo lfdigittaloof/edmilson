@@ -1,6 +1,6 @@
 {
   "name": "edmilson-cell-premium",
-  "version": "3.0.2",
+  "version": "3.1.1",
   "private": true,
   "description": "Edmilson Cell Premium - aplicativo local Windows",
   "main": "electron/main.cjs",
